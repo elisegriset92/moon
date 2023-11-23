@@ -3,7 +3,7 @@
     class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none text-white"
     v-if="getCurrentMoonState?.moon"
   >
-    <div class="p-8 sm:p-10 lg:flex-auto">
+    <div class="p-8 sm:p-10 lg:flex-auto" v-if="tabOpen === 1">
       <h3 class="text-2xl font-bold tracking-tight text-gray-600">
         <slot></slot>
       </h3>
@@ -11,11 +11,14 @@
         Today : {{ getCurrentMoonState?.datestamp }}
       </p>
       <p class="mt-6 text-base leading-7 text-gray-600" v-if="tabOpen === 1">
-        Astro : {{ getCurrentMoonAstro }}
+        Zodiac : {{ getCurrentMoonAstro }}
+      </p>
+      <p class="mt-6 text-base leading-7 text-gray-600" v-if="tabOpen === 1">
+        Keep in mind that the zodiacal phase might not say the same as the monthly moon phases. You are the one to decide which is more important
       </p>
       <div class="mt-10 flex items-center gap-x-4">
         <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">
-          Do's and Don'ts
+          Do's and Don'ts in {{ getCurrentMoonState?.moon.phase_name }}
         </h4>
         <div class="h-px flex-auto bg-gray-100"></div>
       </div>
@@ -65,6 +68,7 @@
         </li>
       </ul>
     </div>
+    <div class="p-8 sm:p-10 lg:flex-auto"  v-else>data under construction</div>
     <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
       <div
         class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-600/5 lg:flex lg:flex-col lg:justify-center lg:py-16 mt-10"

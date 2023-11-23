@@ -86,43 +86,45 @@ export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
         dont: ['nothing in particular']
       },
       hairState: {
-        dos: ['cut your hairs if you want them to grow back quickly and healthily'],
+        dos: ['cut your hair if you want them to grow back quickly and healthily'],
         dont: ['do not shave nor wax']
       },
     },
     {
       name: 'full moon',
-
       plantState: {
         dos: ['nothing in particular'],
         dont: ['nothing in particular']
       },
       hairState: {
-        dos: ['go for a trim, apply a mask or a conditioner to help you hair be stronger and more resistant.'],
+        dos: ['go for a trim, apply a mask or a conditioner to help your hair be stronger and more resistant.'],
         dont: ['nothing in particular']
       },
-    }, {
+    }, 
+    {
       name: 'waning gibbous',
       plantState: {
         dos: ['nothing in particular'],
         dont: ['nothing in particular']
       },
       hairState: {
-        dos: ['cut your hairs if you want them to grow slowly', 'wax or shave your body hairs to slow the growth'],
-        dont: ['do not cut your hairs if you want them to grow back quickly ']
+        dos: ['cut your hair if you want them to grow slowly', 'wax or shave your body hair to slow the growth'],
+        dont: ['do not cut your hair if you want them to grow back quickly ']
       },
 
-    }, {
+    }, 
+    {
       name: 'third quarter',
       plantState: {
         dos: ['nothing in particular'],
         dont: ['nothing in particular']
       },
       hairState: {
-        dos: ['cut your hairs if you want them to grow slowly', 'wax or shave your body hairs to slow the growth'],
-        dont: ['do not cut your hairs if you want them to grow back quickly ']
+        dos: ['cut your hair if you want them to grow slowly', 'wax or shave your body hair to slow the growth'],
+        dont: ['do not cut your hair if you want them to grow back quickly ']
       },
-    }, {
+    }, 
+    {
       name: 'waning crescent',
       plantState: {
         dos: ['nothing in particular'],
@@ -130,10 +132,9 @@ export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
       },
       hairState: {
         dos: ['nothing in particular'],
-        dont: ['do not cut your hairs if you want them to grow back quickly ']
+        dont: ['do not cut your hair if you want them to grow back quickly ']
       },
     }
-
   ]);
 
 
