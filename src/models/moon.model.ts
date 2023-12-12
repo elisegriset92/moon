@@ -21,7 +21,10 @@ export type MoonType =  {
     phase_name: string,
     stage: string,
     emoji: string,
-    zodiac_sign: string,
+    zodiac:{
+      sun_sign: string,
+      moon_sign: string,
+    } 
     moonrise: string,
     moonrise_timestamp: number,
     moonset: string,

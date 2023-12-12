@@ -7,6 +7,7 @@ import { defineStore } from 'pinia'
 export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
 
   const currentMoonState = ref<MoonType>();
+  const currentMoonCalendar = ref<MoonType['moon_phases']>();
   const signs = ref([{
     moon: 'scorpio', content: 'The Moon in Scorpio does not influence on hair health. Hair can became harder and thicker. It is extremely tight moon phase for hair-cut because it can improve or destroy relations with your opposite sex partner.'
   },
@@ -47,10 +48,7 @@ export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
   const moons = ref([
     {
       name: 'new moon',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
-      },
+      plantSate: {},
       hairState: {
         dos: ['wax or shave your body hairs to slow the growth'],
         dont: ['do not cut your hairs'],
@@ -58,9 +56,7 @@ export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
     },
     {
       name: 'waxing crescent',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+      plantSate: {
       },
       hairState: {
         dos: ['nothing in particular'],
@@ -70,9 +66,7 @@ export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
     {
       name: 'first quarter',
 
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+      plantSate: {
       },
       hairState: {
         dos: ['nothing in particular'],
@@ -81,86 +75,81 @@ export const useMoonPhaseStore = defineStore('moonPhaseStore', () => {
     },
     {
       name: 'waxing gibbous',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+      plantSate: {
       },
       hairState: {
-        dos: ['cut your hair if you want them to grow back quickly and healthily'],
+        dos: ['cut your hairs if you want them to grow back quickly and healthily'],
         dont: ['do not shave nor wax']
       },
     },
     {
       name: 'full moon',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+
+      plantSate: {
       },
       hairState: {
-        dos: ['go for a trim, apply a mask or a conditioner to help your hair be stronger and more resistant.'],
+        dos: ['go for a trim, apply a mask or a conditioner to help you hair be stronger and more resistant.'],
         dont: ['nothing in particular']
       },
-    }, 
-    {
+    }, {
       name: 'waning gibbous',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+      plantSate: {
       },
       hairState: {
-        dos: ['cut your hair if you want them to grow slowly', 'wax or shave your body hair to slow the growth'],
-        dont: ['do not cut your hair if you want them to grow back quickly ']
+        dos: ['cut your hairs if you want them to grow slowly', 'wax or shave your body hairs to slow the growth'],
+        dont: ['do not cut your hairs if you want them to grow back quickly ']
       },
 
-    }, 
-    {
+    }, {
       name: 'third quarter',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+      plantSate: {
       },
       hairState: {
-        dos: ['cut your hair if you want them to grow slowly', 'wax or shave your body hair to slow the growth'],
-        dont: ['do not cut your hair if you want them to grow back quickly ']
+        dos: ['cut your hairs if you want them to grow slowly', 'wax or shave your body hairs to slow the growth'],
+        dont: ['do not cut your hairs if you want them to grow back quickly ']
       },
-    }, 
-    {
+    }, {
       name: 'waning crescent',
-      plantState: {
-        dos: ['nothing in particular'],
-        dont: ['nothing in particular']
+      plantSate: {
       },
       hairState: {
         dos: ['nothing in particular'],
-        dont: ['do not cut your hair if you want them to grow back quickly ']
+        dont: ['do not cut your hairs if you want them to grow back quickly ']
       },
     }
+
   ]);
 
 
   const getCurrentMoonState = computed(() => currentMoonState?.value);
-  const getCurrentMoonAstro = computed(() => signs.value.find((astro) => astro.moon.toUpperCase() === currentMoonState?.value?.moon.zodiac_sign.toUpperCase())?.content);
-  const getHairDos = computed(() => moons.value.find((moon) => moon.name.toUpperCase() === currentMoonState?.value?.moon.phase_name.toUpperCase())?.hairState.dos);
-  const getHairDonts = computed(() => moons.value.find((moon) => moon.name.toUpperCase() === currentMoonState?.value?.moon.phase_name.toUpperCase())?.hairState.dont);
-  const getPlantsDos = computed(() => moons.value.find((moon) => moon.name.toUpperCase() === currentMoonState?.value?.moon.phase_name.toUpperCase())?.plantState.dos);
-  const getPlantsDonts = computed(() => moons.value.find((moon) => moon.name.toUpperCase() === currentMoonState?.value?.moon.phase_name.toUpperCase())?.plantState.dont);
-
+  const getCurrentMoonAstro = computed(() => signs.value.find((astro) => astro.moon?.toUpperCase() === currentMoonState?.value?.moon.zodiac.sun_sign?.toUpperCase())?.content);
+  const getHairDos = computed(() => moons.value.find((moon) => moon.name?.toUpperCase() === currentMoonState?.value?.moon.phase_name?.toUpperCase())?.hairState.dos);
+  const getHairDonts = computed(() => moons.value.find((moon) => moon.name?.toUpperCase() === currentMoonState?.value?.moon.phase_name?.toUpperCase())?.hairState.dont);
+  const getPlantDos = computed(() => []);
+  const getPlantDonts = computed(() => []);
+  const getCurrentMoonCalendar = computed(() => currentMoonCalendar.value);
 
   function setCurrentMoonState(event: MoonType) {
     currentMoonState.value = event
   };
+  function setCurrentMoonCalendar(event: MoonType['moon_phases']) {
+    currentMoonCalendar.value = event
+  };
 
   return {
     currentMoonState,
+    currentMoonCalendar,
     signs,
     moons,
     getCurrentMoonState,
     getCurrentMoonAstro,
-    getPlantsDos,
-    getPlantsDonts,
+    getCurrentMoonCalendar,
     getHairDos,
     getHairDonts,
-    setCurrentMoonState
+    getPlantDos,
+    getPlantDonts,
+    setCurrentMoonState,
+    setCurrentMoonCalendar
   }
 
 })

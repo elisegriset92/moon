@@ -3,17 +3,17 @@
     class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none text-white"
     v-if="getCurrentMoonState?.moon"
   >
-    <div class="p-8 sm:p-10 lg:flex-auto" v-if="tabOpen === 1">
+    <div class="p-8 sm:p-10 lg:flex-auto">
       <h3 class="text-2xl font-bold tracking-tight text-gray-600">
         <slot></slot>
       </h3>
       <p class="mt-6 text-base leading-7 text-gray-600">
         Today : {{ getCurrentMoonState?.datestamp }}
       </p>
-      <p class="mt-6 text-base leading-7 text-gray-600" v-if="tabOpen === 1">
+      <p class="mt-6 text-base leading-7 text-gray-600">
         Zodiac : {{ getCurrentMoonAstro }}
       </p>
-      <p class="mt-6 text-base leading-7 text-gray-600" v-if="tabOpen === 1">
+      <p class="mt-6 text-base leading-7 text-gray-600">
         Keep in mind that the zodiacal phase might not say the same as the monthly moon phases. You are the one to decide which is more important
       </p>
       <div class="mt-10 flex items-center gap-x-4">
@@ -28,7 +28,7 @@
       >
         <li
           class="flex gap-x-3"
-          v-for="(dataDo, index) in dataDos"
+          v-for="(hairDo, index) in getHairDos"
           :key="index"
         >
           <svg
@@ -43,12 +43,12 @@
               clip-rule="evenodd"
             />
           </svg>
-          {{ dataDo }}
+          {{ hairDo }}
         </li>
 
         <li
           class="flex gap-x-3"
-          v-for="(dataDont, index) in dataDonts"
+          v-for="(hairDont, index) in getHairDonts"
           :key="index"
         >
           <svg
@@ -64,12 +64,11 @@
               fill="currentColor"
             ></path>
           </svg>
-          {{ dataDont }}
+          {{ hairDont }}
         </li>
       </ul>
     </div>
-    <div class="p-8 sm:p-10 lg:flex-auto"  v-else>data under construction</div>
-    <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+    <div class="p-8 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
       <div
         class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-600/5 lg:flex lg:flex-col lg:justify-center lg:py-16 mt-10"
       >
@@ -99,34 +98,8 @@
 import CardMoonLoader from './CardMoonLoader.vue'
 import { useMoonPhaseStore } from '../store/index.js'
 import { storeToRefs } from 'pinia'
-import {computed} from 'vue'
-const props = defineProps({
-  tabOpen: {
-    required: true,
-    default:1,
-    type:Number
-  }
-})
 
 const moonStore = useMoonPhaseStore()
-const { getCurrentMoonState, getCurrentMoonAstro, getPlantsDos, getPlantsDonts, getHairDos, getHairDonts } =
-storeToRefs(moonStore)
-
-
-const dataDos = computed(() => {
-  if (props.tabOpen === 1){
-    return getHairDos.value
-  } else {
-    return getPlantsDos.value
-  }
-})
-
-const dataDonts = computed(() => {
-  if (props.tabOpen === 1){
-    return getHairDonts.value
-     } else {
-      return getPlantsDonts.value
-     }
-
-})
+const { getCurrentMoonState, getCurrentMoonAstro, getHairDos, getHairDonts } =
+  storeToRefs(moonStore)
 </script>
